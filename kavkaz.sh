@@ -44,8 +44,20 @@ update() {
 		printf_n "${C_LGn}Updating...${RES}"
 		docker stop kusama_node
 		docker rm kusama_node
-                docker run -dit --name kusama_node --restart always --network host -v $HOME/.kusama:/data -u $(id -u ${USER}):$(id -g ${USER}) parity/polkadot --base-path /data --chain kusama --validator --name "kavkaz" --port 30333 --ws-port 9944 --rpc-port 9933 --prometheus-port 9615 --telemetry-url 'wss://telemetry-backend.w3f.community/submit 1' --telemetry-url 'wss://telemetry.polkadot.io/submit/ 1'
+		docker run -dit --name kusama_node --restart always --network host -v $HOME/.kusama:/data -u $(id -u ${USER}):$(id -g ${USER}) parity/polkadot --base-path /data --chain kusama --validator --name "kavkaz" --port 30333 --ws-port 9944 --rpc-port 9953 --prometheus-port 9615 --telemetry-url 'wss://telemetry-backend.w3f.community/submit 1' --telemetry-url 'wss://telemetry.polkadot.io/submit/ 1'
 	else
+		printf_n "${C_LGn}Node version is current!${RES}"
+	fi
+}
+
+# Actions
+sudo apt install wget -y &>/dev/null
+. /root/.bash_profile
+. <(wget -qO- https://raw.githubusercontent.com/letsnode/Utils/main/bashbuilder/logo.sh)
+cd
+$function
+
+else
 		printf_n "${C_LGn}Node version is current!${RES}"
 	fi
 }
