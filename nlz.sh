@@ -47,7 +47,7 @@ update() {
 		printf_n "${C_LGn}Updating...${RES}"
 		docker stop kusama_node
 		docker rm kusama_node
-		docker run -dit --name kusama_node --restart always --network host -v $HOME/.kusama:/data -u $(id -u ${USER}):$(id -g ${USER}) parity/polkadot --base-path /data --chain kusama --validator --name "nlz" --sync=warp --port 30533 --ws-port 9954 --rpc-port 9953 --prometheus-port 9655 --in-peers 20 --out-peers 20 --telemetry-url 'wss://telemetry-backend.w3f.community/submit 1' --telemetry-url 'wss://telemetry.polkadot.io/submit/ 1'
+		docker run -dit --name kusama_node --restart always --network host -v $HOME/.kusama:/data -u $(id -u ${USER}):$(id -g ${USER}) parity/polkadot:latest --base-path /data --chain kusama --validator --name "nlz" --sync=warp --port 30533 --rpc-port 9953 --prometheus-port 9655 --in-peers 20 --out-peers 20 --telemetry-url 'wss://telemetry-backend.w3f.community/submit 1' --telemetry-url 'wss://telemetry.polkadot.io/submit/ 1'
 	else
 		printf_n "${C_LGn}Node version is current!${RES}"
 	fi
